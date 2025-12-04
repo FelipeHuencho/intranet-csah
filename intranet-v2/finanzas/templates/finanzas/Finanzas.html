@@ -1,0 +1,69 @@
+{% load static %}
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel Finanzas</title>
+
+<!-- Fuentes e íconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="{% static 'inicioSesion/img/logo_V2-removebg-preview.png' %}">
+<!-- Estilos del portal (mismo diseño institucional) -->
+<link rel="stylesheet" href="{% static 'finanzas/finanzas.css' %}">
+
+</head>
+
+<body>
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="profile">
+      <div class="avatar">
+        {{ request.user.first_name|default:"U"|slice:":1" }}{{ request.user.last_name|default:"S"|slice:":1" }}
+      </div>
+      <div class="profile-info">
+        <div>{{ request.user.first_name }}</div>
+        <div class="role">Finanzas</div>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a href="#" data-section="dashboard" class="active">
+        <i class="fa-solid fa-chart-line"></i> <span>Dashboard</span>
+      </a>
+
+      <a href="#" data-section="comprobantes recibidos">
+        <i class="fa-solid fa-file-invoice-dollar"></i> <span>Comprobantes</span>
+      </a>
+      <a href="#" data-section="cuotas">Cuotas Pendientes</a>
+      <a href="{% url 'inicioSesion:logout' %}" class="logout">
+        <i class="fa-solid fa-right-from-bracket"></i> <span>Cerrar sesión</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <section class="main">
+    <header class="topbar">
+      <button class="toggle" id="toggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="topbar-title" id="topbar-title">Dashboard</div>
+      <div class="spacer"></div>
+      
+    </header>
+
+    <main class="content" id="content-area"></main>
+
+    <footer class="footer">© Colegio San Agustín de Hipona 2025</footer>
+  </section>
+</div>
+
+<div id="overlay"></div>
+{% csrf_token %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{% static 'finanzas/finanzas.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de Administración</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="{% static 'img/logo_V2-removebg-preview.png' %}">
+  
+  <link rel="stylesheet" href="{% static 'css/panel_admin.css' %}">
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="profile">
+        <div class="avatar">
+          {{ usuario.first_name|slice:":1" }}{{ usuario.last_name|slice:":1" }}
+        </div>
+        <div class="profile-info">
+          <div>{{ usuario.first_name }} {{ usuario.last_name }}</div>
+          <div class="role">Administrador</div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="#" data-section="tablero" class="active"><i class="fa-solid fa-gauge"></i> <span>Tablero</span></a>
+
+        <details class="menu-group">
+          <summary><i class="fa-solid fa-user-graduate"></i> <span>Estudiantes</span></summary>
+          <div class="sub-menu">
+            <a href="#" data-section="estudiantes">Listado de Cursos</a>
+            <a href="#" data-section="agregar-alumno">Agregar Alumno</a>
+          </div>
+        </details>
+
+        <a href="#" data-section="profesores"><i class="fa-solid fa-chalkboard-user"></i> <span>Profesores</span></a>
+
+        <details class="menu-group">
+          <summary><i class="fa-solid fa-book"></i> <span>Académico</span></summary>
+          <div class="sub-menu">
+            <a href="#" data-section="asignaturas">Asignaturas</a>
+            <a href="#" data-section="horarios">Horarios</a>
+          </div>
+        </details>
+
+        <details class="menu-group">
+          <summary><i class="fa-solid fa-wallet"></i> <span>Pagos</span></summary>
+          <div class="sub-menu">
+            <a href="#" data-section="revision-pagos">Revisión de pagos</a>
+          </div>
+        </details>
+
+        <a href="#" data-section="comunicados"><i class="fa-solid fa-bullhorn"></i> <span>Comunicados</span></a>
+        
+        <form method="post" action="/logout/" class="logout-form">
+          {% csrf_token %}
+          <button type="submit" class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Cerrar sesión</span>
+          </button>
+        </form>
+
+      </nav>
+    </aside>
+    
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <section class="main">
+      <header class="topbar">
+        <button class="toggle" id="toggle"><i class="fa-solid fa-bars"></i></button>
+        <div class="topbar-title" id="topbar-title">Panel de Control</div>
+        <div class="spacer"></div>
+
+        <div class="user-mini">
+          <span>{{ usuario.first_name }} {{ usuario.last_name }}</span>
+          <div class="avatar-mini">{{ usuario.first_name|slice:":1" }}{{ usuario.last_name|slice:":1" }}</div>
+        </div>
+      </header>
+
+      <main class="content" id="main-content">
+        <h1>Panel del Administrador</h1>
+        <p>Bienvenido al panel principal. Aquí podrás gestionar usuarios, cursos, pagos y más.</p>
+        
+        </main>
+
+      <footer class="footer">
+        Copyright © Colegio San Agustín de Hipona 2025
+      </footer>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script src="{% static 'js/scriptadmins.js' %}"></script>
+</body>
+
+</html>

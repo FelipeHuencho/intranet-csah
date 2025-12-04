@@ -1,0 +1,1948 @@
+/* ======================
+   ESTILO INTRANET COLEGIO SAN AGUSTÍN
+======================== */
+
+:root {
+  --color-primary: #0F294C;   /* Azul marino */
+  --color-secondary: #CDA758; /* Dorado */
+  --color-light: #F8F9FB;
+  --color-text: #1a1a1a;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+  --sidebar-width: 260px;
+  --transition: all 0.3s ease;
+}
+
+/* ======================
+   BASE
+======================== */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-light);
+  color: var(--color-text);
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ======================
+   SIDEBAR ESTILO ADMIN (CON AVATAR AMARILLO)
+======================== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  background-color: var(--color-primary); /* Azul oscuro sólido */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  box-shadow: none;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+/* --- PERFIL --- */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 40px 20px 30px; 
+  border-bottom: none;
+  background: transparent;
+}
+
+/* Avatar*/
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: var(--color-secondary); 
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 12px; 
+  font-size: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-info div:first-child {
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+/* Estilo de "Badge" para el rol */
+.role {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 6px;
+  font-size: 11px;
+  color: #cbd5e1; 
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: fit-content;
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  gap: 8px;
+  flex: 1; 
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 14px 18px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+}
+
+/* Hover en enlaces inactivos */
+.menu a:hover:not(.active) {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ESTADO ACTIVO */
+.menu a.active {
+  background-color: var(--color-secondary); 
+  color: var(--color-primary); 
+  font-weight: 700;
+}
+
+/* Sección de Perfil - Más espaciosa y distinguida */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 35px 25px; 
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Avatar Moderno */
+.avatar {
+  width: 52px;
+  height: 52px;
+  background-color: var(--color-secondary); 
+  color: var(--color-primary); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  border-radius: 14px;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+/* Pequeño efecto al pasar el mouse sobre el avatar */
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Info del Usuario */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.4;
+}
+
+.profile-info div:first-child {
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.3px;
+  color: #ffffff;
+}
+
+.role {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6); 
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+/* --- MENÚ DE NAVEGACIÓN --- */
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 14px 18px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+}
+
+.menu a:hover:not(.active):not(.logout) {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.menu a.active {
+  background-color: var(--color-secondary); 
+  color: var(--color-primary); 
+  font-weight: 700;
+}
+
+/* --- CERRAR SESIÓN */
+.menu a.logout {
+  margin-top: 25px;
+  background-color: rgba(30, 41, 59, 0.5); 
+  border: 1px solid #ff4d4d; 
+  color: #ff4d4d !important; 
+  
+  border-radius: 12px;
+  padding: 12px 0;
+  
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.menu a.logout:hover {
+  background-color: #ff4d4d; 
+  color: #fff !important; 
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  transform: translateY(-2px);
+}
+/* Efecto Hover */
+.menu a.logout:hover {
+  background-color: #ff4d4d; /* Se vuelve rojo sólido */
+  color: #fff !important; /* Texto blanco */
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  transform: translateY(-2px);
+}
+/* ======================
+   MAIN / TOPBAR
+======================== */
+.main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  transition: margin-left 0.3s ease;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  height: 88px;
+  background: #fff;
+  padding: 0 20px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.toggle {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--color-primary);
+  cursor: pointer;
+  display: none; 
+}
+
+.topbar-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.user-mini {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.avatar-mini {
+  width: 35px;
+  height: 35px;
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+/* ======================
+   CONTENIDO
+======================== */
+.content {
+  padding: 30px;
+  background-color: var(--color-light);
+  flex: 1;
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 25px;
+  margin-bottom: 25px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.stat-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stat-card {
+  flex: 1 1 250px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: var(--shadow);
+}
+
+/* ======================
+   FOOTER
+======================== */
+.footer {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-muted);
+  background: transparent;
+  padding: 20px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* ======================
+   OVERLAY Y RESPONSIVE
+======================== */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  z-index: 900;
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main {
+    margin-left: 0;
+  }
+
+  .toggle {
+    display: block; /* Solo visible en pantallas pequeñas */
+  }
+}
+/* ======================
+   EVITAR SCROLL LATERAL EN MÓVIL
+======================== */
+
+/* Elimina desbordes y movimientos */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Evita que el sidebar abierto empuje el body */
+.layout {
+  overflow-x: hidden;
+}
+
+/* Asegura que el overlay cubra bien la pantalla */
+#overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  z-index: 900;
+}
+
+/* Cuando el sidebar está abierto, el fondo queda bloqueado */
+body.menu-open {
+  overflow: hidden;
+}
+/* === MIS CLASES === */
+
+.clases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.clase-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-left: 6px solid var(--color-secondary);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.clase-icon {
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 10px;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.clase-info h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.clase-info p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.no-clases {
+  text-align: center;
+  color: var(--color-muted);
+  font-style: italic;
+}
+/* ======================
+   TABLA DE NOTAS
+======================== */
+
+.tabla-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #fff;
+  margin-top: 20px;
+}
+
+.tabla-header {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 12px 18px;
+}
+
+.tabla-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabla-body {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.tabla-notas {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+  background: #fff;
+}
+
+.tabla-notas thead {
+  background: #fff;
+  border-bottom: 2px solid #eee;
+}
+
+.tabla-notas th {
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 10px;
+}
+
+.tabla-notas td {
+  font-size: 14px;
+  color: #333;
+  padding: 10px 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-notas tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.tabla-notas tr:hover {
+  background-color: #f5f5f5;
+}
+
+.tabla-notas td:first-child,
+.tabla-notas th:first-child {
+  text-align: left;
+  padding-left: 18px;
+}
+/* ===========================================
+    ESTILO DE CALENDARIO
+============================================== */
+
+/* * El JS ya renderiza el calendario dentro de un <div class="card">,
+ * así que solo necesitamos estilizar los elementos internos de FullCalendar.
+ * Usamos #calendar para asegurar que solo afectamos a ESTE calendario.
+ */
+
+/* --- 1. Toolbar (Botones y Título) --- */
+
+/* Título */
+#calendar .fc-toolbar-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--color-primary);
+}
+
+/* Todos los botones (Prev, Next, Today, Month, Week, Day) */
+#calendar .fc-button {
+  background: var(--color-primary);
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 8px; 
+  padding: 8px 16px;
+  text-transform: capitalize;
+  transition: var(--transition);
+  opacity: 1;
+}
+
+/* Hover/Focus (usamos el dorado) */
+#calendar .fc-button:hover,
+#calendar .fc-button:focus,
+#calendar .fc-button:active {
+  background: var(--color-secondary);
+  color: var(--color-primary); 
+  box-shadow: 0 4px 12px rgba(205, 167, 88, 0.3); 
+}
+
+/* Botón "Activo" (ej: 'Month' cuando está en vista de mes) */
+#calendar .fc-button-primary.fc-button-active {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+/* El botón "Today" lo hacemos diferente */
+#calendar .fc-today-button {
+  background: #f0f3f7; 
+  color: var(--color-primary);
+}
+#calendar .fc-today-button:hover {
+  background: #e0e6ec;
+  color: var(--color-primary);
+  box-shadow: none;
+}
+
+/* --- 2. Vista (Días de la semana y celdas) --- */
+
+/* Cabecera (Lunes, Martes, etc.) */
+#calendar .fc-col-header-cell-cushion {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  padding: 10px 4px;
+  border: none;
+}
+
+/* Borde de la cabecera */
+#calendar .fc-scrollgrid-section-header th {
+   border-bottom: 2px solid #f0f3f7;
+}
+
+/* Líneas de la rejilla */
+#calendar .fc-daygrid-day,
+#calendar .fc-col-header-cell {
+  border-color: #f0f3f7; 
+}
+
+/* El número del día (1, 2, 3...) */
+#calendar .fc-daygrid-day-number {
+  font-weight: 600;
+  color: #333;
+  padding: 8px;
+}
+
+/* Celda del día de HOY */
+#calendar .fc-day-today {
+  background: rgba(205, 167, 88, 0.08); 
+  border: none;
+}
+#calendar .fc-day-today .fc-daygrid-day-number {
+  color: var(--color-primary); 
+}
+
+/* --- 3. Eventos --- */
+
+/* El evento en sí */
+#calendar .fc-event {
+  background-color: var(--color-secondary);
+  border: 1px solid #b8964e; 
+  color: var(--color-primary); 
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 3px 6px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#calendar .fc-event:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Asegura que los bordes del calendario no se vean mal */
+#calendar .fc-view,
+#calendar .fc-scrollgrid {
+  border: none;
+}
+/* ======================
+   PERFIL DE ALUMNO
+====================== */
+
+.perfil-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(15, 41, 76, 0.15);
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  max-width: 1150px;
+  margin: 0 auto 40px;
+}
+
+.perfil-banner {
+  background: linear-gradient(180deg, #0F294C 0%, #3B5273 100%);
+  height: 130px;
+  border-radius: 12px 12px 0 0;
+}
+
+.perfil-avatar {
+  text-align: center;
+  margin-top: -50px;
+}
+
+.avatar-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f7e3a1, #bfa75b);
+  color: #0F294C;
+  font-weight: 700;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.perfil-avatar h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0F294C;
+  margin-bottom: 2px;
+}
+
+.perfil-username {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.perfil-sub {
+  color: #999;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+.perfil-body {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 30px 25px;
+}
+
+.perfil-info-box {
+  flex: 1 1 48%;
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 18px 22px;
+  box-shadow: 0 3px 8px rgba(15, 41, 76, 0.1);
+}
+
+.perfil-info-box h3 {
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.perfil-info-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.perfil-info-box td {
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: #333;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.perfil-info-box td:first-child {
+  font-weight: 600;
+  color: #0F294C;
+  width: 35%;
+}
+
+@media (max-width: 768px) {
+  .perfil-body {
+    flex-direction: column;
+  }
+}
+
+
+/* --- Estilos Grilla Horario (Tema Dark Navy) --- */
+
+:root {
+    --color-colegio: #0F294C; 
+    --color-borde-suave: #e1e8ed;
+}
+
+.horario-card-grid {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(15, 41, 76, 0.1);
+    padding: 25px;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    border-top: 5px solid var(--color-colegio);
+}
+
+.card-title-grid {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-colegio);
+    margin: 0;
+}
+
+.horario-sub-grid {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+/* Contenedor scroll */
+.table-responsive-grid {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--color-colegio); 
+}
+
+/* La tabla en sí */
+.horario-table-styled {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+/* --- CABECERAS (Días: Lunes, Martes...) --- */
+.horario-table-styled thead th {
+    background-color: var(--color-colegio); 
+    color: #ffffff; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.85rem;
+    padding: 18px 10px;
+    text-align: center;
+    /* Bordes blancos finos para separar las celdas oscuras */
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* --- COLUMNA DE HORA*/
+.horario-table-styled tbody td.time-cell-styled {
+    background-color: var(--color-colegio); 
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem; 
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.1);
+    border-right: 3px solid rgba(0, 0, 0, 0.2);
+}
+/* --- Celdas del Cuerpo*/
+.horario-table-styled tbody td {
+    padding: 15px 8px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--color-borde-suave);
+    border-right: 1px solid var(--color-borde-suave);
+    height: 80px;
+    transition: background-color 0.2s ease;
+}
+
+.horario-table-styled tbody td:hover {
+    background-color: #f4f8fb; /
+}
+.subject-name {
+    font-weight: 700;
+    color: var(--color-colegio); 
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.teacher-name {
+    font-size: 0.75rem;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.empty-cell {
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+/* --- Limpieza de bordes finales --- */
+.horario-table-styled tbody td:last-child { border-right: none; }
+.horario-table-styled thead th:last-child { border-right: none; }
+.horario-table-styled tbody tr:last-child td { border-bottom: none; }
+
+/* --- CELDA "HOY" --- */
+.horario-table-styled tbody tr[style*="background-color"] {
+    background-color: #fffbef !important; 
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .horario-table {
+    font-size: 13px;
+  }
+  .horario-table tbody td.hora {
+    width: 110px;
+    font-size: 12px;
+  }
+  .horario-table tbody td strong {
+    font-size: 14px;
+  }
+}
+
+/* ============================================================
+   MEJORAS DE INTERACCIÓN Y ANIMACIONES SUTILES
+   (CLAVE: Transiciones suaves, efectos hover, animaciones ligeras)
+/* 1. Definimos animaciones y sombras mejoradas
+--------------------------------------------- */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+:root {
+  
+  --shadow: 0 4px 12px rgba(15, 41, 76, 0.08);
+  --shadow-hover: 0 8px 24px rgba(15, 41, 76, 0.15);
+}
+
+/* 2. Suavizado global
+--------------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 3. Sidebar (Menú lateral)
+--------------------------------------------- */
+.menu a {
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu a:hover i {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Le damos más presencia al link activo */
+.menu a.active {
+  box-shadow: 0 4px 12px -2px rgba(205, 167, 88, 0.4);
+  transform: translateX(5px);
+  color: #0F294C !important; 
+}
+
+/* 4. Tarjetas (Cards)
+--------------------------------------------- */
+
+.card, .stat-card, .clase-card, .perfil-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover, 
+.stat-card:hover, 
+.perfil-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 5. STAT-CARDS 
+--------------------------------------------- */
+.stat-card {
+  position: relative;
+  overflow: hidden; 
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* El "brillo" */
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  
+  transform: translateX(-100%);
+  animation: shimmer 3.5s infinite linear;
+  animation-delay: 1s; 
+}
+
+/* 6. Tabla de Notas
+--------------------------------------------- */
+.tabla-notas thead th {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fdfdfd; 
+  border-bottom: 3px solid var(--color-primary);
+}
+
+/* Hacemos la transición de hover más suave */
+.tabla-notas tr {
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Sombra sutil en la fila al pasar el mouse */
+.tabla-notas tr:hover {
+  background-color: #fff;
+  box-shadow: 0 1px 10px rgba(15, 41, 76, 0.07);
+}
+
+/* Destacamos la columna de Promedio */
+.tabla-notas td:last-child {
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #f8f9fb;
+  color: var(--color-primary);
+}
+
+/* 7. Perfil de Alumno
+--------------------------------------------- */
+.avatar-circle {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hacemos que el avatar del perfil resalte al pasar el mouse */
+.avatar-circle:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.perfil-info-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* También las cajas de información */
+.perfil-info-box:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* 8. Horario
+--------------------------------------------- */
+.horario-table {
+  border: 1px solid #d0d7e1;
+  border-radius: 12px; /* Redondear bordes */
+  box-shadow: var(--shadow);
+}
+
+/* Suavizar el hover de las celdas */
+.horario-table tbody td {
+  transition: background-color 0.2s ease;
+}
+
+.horario-table tbody tr:hover td {
+  background-color: #f7faff;
+}
+/* ============================================================
+   AJUSTE RESPONSIVE GLOBAL — ADAPTACIÓN COMPLETA A CELULAR
+   (CLAVE: evitar scroll horizontal, reordenar grid, limitar tamaños)
+============================================================ */
+
+@media (max-width: 768px) {
+
+  /* Layout general */
+  .content {
+    padding: 18px 15px;
+  }
+
+  .topbar {
+    height: 70px;
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .topbar-title {
+    font-size: 16px;
+  }
+
+  /* Sidebar */
+  :root {
+    --sidebar-width: 240px;
+  }
+
+  .sidebar {
+    width: 240px;
+  }
+
+  .menu a {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  /* Tarjetas */
+  .card {
+    padding: 16px 18px;
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  /* Estadísticas */
+  .stat-cards-container {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .stat-card {
+    flex: none;
+    width: 100%;
+  }
+
+  /* Grid de clases */
+  .clases-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .clase-card {
+    padding: 16px;
+  }
+
+  .clase-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .clase-info h3 {
+    font-size: 16px;
+  }
+
+  .clase-info p {
+    font-size: 13px;
+  }
+
+  /* Tabla de notas */
+  .tabla-header h2 {
+    font-size: 16px;
+  }
+
+  .tabla-notas th,
+  .tabla-notas td {
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+
+  /* Calendario */
+  #calendar .fc-toolbar-title {
+    font-size: 18px;
+  }
+
+  #calendar .fc-button {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+
+  #calendar .fc-col-header-cell-cushion {
+    font-size: 11px;
+    padding: 6px 2px;
+  }
+
+  #calendar .fc-daygrid-day-number {
+    padding: 6px;
+    font-size: 13px;
+  }
+  /* =========================================
+   ARREGLO CALENDARIO MÓVIL (RESPONSIVE)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .fc-header-toolbar, 
+    .calendar-header { 
+        display: flex;
+        flex-direction: column; 
+        gap: 15px;
+        align-items: center;
+        padding-bottom: 15px;
+    }
+
+    .fc-toolbar-chunk {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* Reducir tamaño del título "Noviembre de 2025" */
+    .fc-toolbar-title,
+    h2 { 
+        font-size: 1.2rem !important;
+        text-align: center;
+    }
+
+    /* 2. ARREGLAR LA TABLA (GRILLA) */
+    /* Esto es CLAVE: Permite hacer scroll lateral con el dedo en vez de aplastar todo */
+    .fc-view-harness,
+    .calendar-container-body {
+        overflow-x: auto; /* Habilita scroll horizontal */
+        -webkit-overflow-scrolling: touch; /* Suavidad en iPhone */
+        width: 100%;
+    }
+
+    /* Forzamos que la tabla tenga un ancho mínimo decente */
+    .fc-scrollgrid,
+    table {
+        min-width: 600px !important; /* Obliga al scroll si la pantalla es menor a 600px */
+    }
+
+    /* 3. AJUSTAR LAS CELDAS Y EVENTOS */
+    /* Reducir altura de las celdas para que quepa mejor en vertical */
+    .fc-daygrid-day-frame {
+        min-height: 80px !important; /* Altura mínima más pequeña */
+    }
+
+    /* Arreglar la etiqueta dorada "Inglés" */
+    .fc-event,
+    .event-badge {
+        font-size: 0.7rem !important; /* Letra más pequeña */
+        padding: 2px 4px !important;
+        white-space: nowrap; /* Que no se parta el texto */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Pone "..." si es muy largo */
+        max-width: 90%;
+        margin: 1px auto;
+    }
+
+    /* Reducir los días de la semana (DOM, LUN...) */
+    .fc-col-header-cell-cushion {
+        font-size: 0.8rem;
+        padding: 5px !important;
+    }
+}
+
+  /* Perfil del alumno */
+  .perfil-card {
+    margin: 0 10px 25px;
+  }
+
+  .perfil-banner {
+    height: 110px;
+  }
+
+  .avatar-circle {
+    width: 75px;
+    height: 75px;
+    font-size: 1.4rem;
+  }
+
+  .perfil-body {
+    flex-direction: column;
+    padding: 18px 18px 20px;
+    gap: 15px;
+  }
+
+  .perfil-info-box {
+    padding: 16px;
+  }
+
+  .perfil-info-box td {
+    font-size: 0.85rem;
+  }
+
+  /* Horario */
+  .horario-wrapper {
+    overflow-x: auto;
+  }
+
+  .horario-table {
+    min-width: 620px; 
+  }
+
+  /* Footer */
+  .footer {
+    padding: 15px 0;
+    font-size: 12px;
+  }
+
+  /* Prevención de desbordes */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+/* ==========================================================================
+   MODAL PIN 
+   ========================================================================== */
+
+/* El fondo de la pantalla (Mantenemos oscuro para contraste) */
+.modal-pin {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 16, 32, 0.75); 
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* La caja del modal  */
+.modal-pin-box {
+  background: #ffffff; 
+  width: 100%;
+  max-width: 380px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  position: relative;
+  border: 1px solid #f1f5f9; 
+  animation: scaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Icono de candado */
+.modal-pin-box::before {
+  content: '🔒';
+  font-size: 40px;
+  display: block;
+  margin-bottom: 20px;
+  /* Sombra suave al icono */
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+/* Título */
+.modal-pin-box h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 10px 0;
+  color: #0F294C; 
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Texto descriptivo */
+.modal-pin-box p {
+  font-size: 14px;
+  color: #64748b; 
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+/* El Input del PIN */
+.modal-pin-input {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0F294C; 
+  text-align: center;
+  letter-spacing: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Efecto al hacer clic en el input */
+.modal-pin-input:focus {
+  background: #fff;
+  border-color: #CDA758; 
+  box-shadow: 0 0 0 4px rgba(205, 167, 88, 0.15); 
+  transform: translateY(-2px);
+}
+
+.modal-pin-input::placeholder {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Botones */
+.modal-pin-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+}
+
+/* Botón Validar  */
+.modal-pin-btn.confirm {
+  background: #0F294C;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(15, 41, 76, 0.2);
+}
+
+.modal-pin-btn.confirm:hover {
+  background: #CDA758; 
+  color: #0F294C;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(205, 167, 88, 0.3);
+}
+
+/* Botón Cancelar */
+.modal-pin-btn.cancel {
+  background: transparent;
+  color: #94a3b8;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.modal-pin-btn.cancel:hover {
+  color: #ef4444; 
+  background: #fef2f2;
+}
+
+/* Mensaje de Error */
+#pin-error {
+  color: #dc2626;
+  margin-top: 15px;
+  font-size: 13px;
+  background: #fef2f2;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #fee2e2;
+  display: none;
+}
+/* =========================================
+   RESPONSIVE: AJUSTES PARA MÓVIL (Celulares)
+   ========================================= */
+
+@media (max-width: 576px) {
+    
+    /* 1. Contenedor del Modal: Ocupar más ancho pero con menos márgenes */
+    .modal-pin-compacto .modal-dialog {
+        max-width: 90% !important; /* Que no sea tan angosto en celular */
+        margin: 1rem auto; /* Centrado */
+    }
+
+    .modal-pin-compacto .modal-content {
+        padding: 15px !important; /* Menos espacio interno (antes 25px) */
+    }
+
+    /* 2. Reducir Icono y Títulos */
+    .modal-pin-compacto .fa-lock, 
+    .modal-pin-compacto img[alt="lock"] {
+        font-size: 2.5rem !important; /* Icono más pequeño */
+        margin-bottom: 10px !important;
+    }
+
+    .modal-pin-compacto h3 {
+        font-size: 1.1rem !important; /* Título más chico */
+    }
+
+    .modal-pin-compacto p {
+        font-size: 0.85rem !important; /* Texto descripción más chico */
+        margin-bottom: 15px !important;
+    }
+
+    /* 3. Input (Caja de texto) más compacta */
+    .modal-pin-compacto input[type="password"],
+    .modal-pin-compacto input[type="text"] {
+        padding: 10px !important; /* Menos relleno */
+        font-size: 1rem !important;
+        height: 45px; /* Altura fija controlada */
+    }
+
+    /* 4. Botones más delgados y compactos */
+    .modal-pin-btn {
+        padding: 10px !important; 
+        margin-top: 15px !important; 
+        font-size: 12px !important; 
+        border-radius: 8px !important;
+    }
+
+    .modal-pin-btn.cancel {
+        padding: 8px !important;
+        font-size: 11px !important;
+    }
+}
+
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Animaciones */
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes scaleIn { from {transform:scale(.92);} to {transform:scale(1);} }
+
+
+
+
+
+.btn-cerrar-pin {
+    margin-top: 15px;
+    padding: 8px 14px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ===== PORTAL DE PAGOS — Estilo Premium ===== */
+
+.portal-wrapper {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.portal-header {
+  margin-bottom: 18px;
+}
+
+.portal-header h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.portal-header p {
+  font-size: 15px;
+  margin: 2px 0;
+  color: #555;
+}
+
+.tabla-container {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.tabla-pagos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-pagos thead tr {
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+}
+
+.tabla-pagos th,
+.tabla-pagos td {
+  padding: 14px 18px;
+  font-size: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-pagos tbody tr:hover {
+  background: #f6f8fb;
+}
+
+/* Estado badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-paid {
+  background: #e6f7ec;
+  color: #0a7b34;
+}
+
+.badge-pending {
+  background: #fff3d6;
+  color: #b88200;
+}
+
+.badge-overdue {
+  background: #ffe0e0;
+  color: #b60000;
+}
+
+/* Botones */
+.btn-portal {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s;
+}
+
+.btn-subir-comprobante {
+  background: var(--color-secondary);
+  color: #fff;
+}
+
+.btn-subir-comprobante:hover {
+  background: #b48e3c;
+}
+
+.btn-cerrar-pin {
+  margin-top: 18px;
+  padding: 10px 16px;
+  background: #c62828;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-cerrar-pin:hover {
+  background: #a61e1e;
+}
+
+/* ===== Portal Pagos - Diseño Premium ===== */
+.pagos-top h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0F294C;
+}
+.sub {
+    font-size: 15px;
+    color: #5a5a5a;
+    margin: 4px 0;
+}
+.barra-progreso {
+    margin-top: 12px;
+    height: 8px;
+    background: #e6e8ec;
+    border-radius: 10px;
+}
+.progreso {
+    height: 100%;
+    background: #CDA758;
+    border-radius: 10px;
+    transition: width .4s;
+}
+.tiny {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* Cards grid */
+.tarjetas-pagos {
+    margin-top: 20px;
+    display: grid;
+    gap: 15px;
+}
+
+.pago-card {
+    background: #fff;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.25),
+        0 6px 15px rgba(0, 0, 0, 0.15);
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover con sensación de elevarse aún más */
+.pago-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 
+        0 18px 45px rgba(0, 0, 0, 0.3),
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+.pc-mes {
+    font-size: 17px;
+    font-weight: 600;
+    color: #0F294C;
+}
+.pc-det {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+    color: #555;
+    font-size: 14px;
+}
+.pc-monto {
+    font-weight: bold;
+}
+
+/* footer line */
+.pc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge-ok {
+    background: #d3fcd3;
+    color: #0a7a0a;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+.badge-pend {
+    background: #fff4d1;
+    color: #b98300;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Pay button */
+/* ==============================================
+   AJUSTE BOTÓN DE PAGO Y FOOTER DE TARJETA
+   ============================================== */
+
+
+
+/* El botón de pago "Getnet" */
+/* Pay button */
+.btn-pay-card {
+    background: #CDA758;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+    width: 10%;
+}
+.btn-pay-card:hover {
+    background: #b99748;
+}
+
+/* Check icon */
+.ic-check {
+    font-size: 20px;
+    color: #0a7a0a;
+    font-weight: bold;
+}
+
+/* Close access button */
+.btn-cerrar-elegante {
+    margin-top: 25px;
+    padding: 10px 18px;
+    background: #b32626;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .2s;
+}
+.btn-cerrar-elegante:hover {
+    background: #8b1f1f;
+}
+
+.badge-review {
+    background: #9e9e9e;
+    color: white;
+}
+
+/* =========================================
+   OPTIMIZACIÓN FINAL PARA CELULAR (STUDENT)
+   ========================================= */
+@media (max-width: 768px) {
+  .content { padding: 18px 15px; }
+  .topbar { height: 70px; padding: 0 14px; }
+  
+  /* === ARREGLO SIDEBAR MÓVIL === */
+  /* Ajuste de ancho de sidebar para que se vea bien en celular */
+  .sidebar { width: 85%; max-width: 300px; }
+  
+  /* Textos y títulos */
+  .topbar-title { font-size: 0.95rem; }
+  .card-title { font-size: 1.1rem; }
+  
+  /* Forzar columnas a 1 sola fila en todos los grids */
+  .stat-cards-container, 
+  .clases-grid, 
+  .tarjetas-pagos,
+  .perfil-body {
+    flex-direction: column !important;
+    display: flex !important;
+    gap: 1rem;
+  }
+
+  /* Portal de Pagos (Cards apiladas) */
+  .tarjetas-pagos { display: flex; flex-direction: column; }
+  .pago-card { margin-bottom: 0.5rem; padding: 1.2rem; }
+  
+  /* Botones grandes para dedos */
+  .btn-portal, .btn-pay-card, .btn-cerrar-elegante { 
+    display: flex; 
+    justify-content: center; 
+    width: 40%; 
+    padding: 0.8rem; 
+    margin-top: 0.5rem;
+  }
+  
+  /* Modales ocupan casi toda la pantalla */
+  .modal-pin-box { width: 95vw; margin: 2vh auto; padding: 1.5rem; }
+  .modal-pin-input { font-size: 1.5rem; letter-spacing: 5px; }
+
+  /* Tablas con scroll horizontal obligatorio */
+  .tabla-container { overflow-x: auto; }
+  .tabla-pagos { min-width: 500px; }
+  
+  /* Perfil ajustado */
+  .perfil-card { margin: 0 0 20px 0; width: 100%; border-radius: 0; }
+  .perfil-body { padding: 15px; }
+  .perfil-info-box td { font-size: 0.85rem; padding: 8px 0; }
+}
+/* =========================================
+   AJUSTE FINAL PARA CELULAR (APILADO)
+   ========================================= */
+@media (max-width: 480px) {
+  
+  /* 1. Hacemos que las celdas se comporten como bloques (una sobre otra) */
+  .perfil-info-box td {
+    display: block; 
+    width: 100%;
+    text-align: left; /* Aseguramos alineación izquierda */
+    padding: 2px 0;   /* Reducimos padding vertical */
+    border: none;     /* Quitamos el borde por defecto de la celda */
+  }
+
+  /* 2. Estilo para la ETIQUETA (Ej: Nombre completo) */
+  /* La ponemos un poco más chica y de color suave arriba */
+  .perfil-info-box td:first-child {
+    font-size: 0.75rem;       /* Letra pequeña para la etiqueta */
+    color: var(--color-primary);
+    opacity: 0.7;             /* Un poco más transparente */
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 8px;          /* Separación entre grupos */
+  }
+
+  /* 3. Estilo para el VALOR (Ej: AGUSTIN JESUS...) */
+  /* Le damos tamaño normal y permitimos que ocupe todo el ancho */
+  .perfil-info-box td:last-child {
+    font-size: 0.95rem;       /* Letra legible */
+    color: #333;
+    font-weight: 500;
+    padding-bottom: 8px;      /* Espacio abajo */
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* Línea separadora sutil */
+    
+    /* ESTO ASEGURA QUE NO SE CORTE */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  /* Ajuste del contenedor general en móvil */
+  .perfil-card {
+    border-radius: 0;       /* En móvil se ve mejor sin bordes redondos a los lados */
+    box-shadow: none;       /* Más plano */
+    border-bottom: 1px solid #eee;
+  }
+}
+/* ====================================================
+   ARREGLO HOVER COLUMNA HORAS (Para que no se ponga blanca)
+   ==================================================== */
+
+.horario-table-styled tbody td.time-cell-styled:hover {
+    background-color: #16345c !important; 
+    color: #ffffff !important;
+    
+    /* Mantenemos la sombra y bordes */
+    box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.1);
+}
+/* ============================================================
+   CORRECCIÓN: SIDEBAR OCULTO EN MÓVIL (OFF-CANVAS)
+   ============================================================ */
+
+/* Aplicamos esto a pantallas menores a 992px (Tablets y Celulares) */
+@media (max-width: 992px) {
+
+  /* 1. EL SIDEBAR: Oculto por defecto a la izquierda */
+  .sidebar {
+    position: fixed; /* Flota sobre todo */
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 260px !important; /* Ancho fijo cómodo */
+    z-index: 2000; /* Encima de todo */
+    
+    /* LA CLAVE: Lo empujamos fuera de la pantalla */
+    transform: translateX(-100%); 
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Sombra para dar profundidad cuando se abra */
+    box-shadow: 5px 0 25px rgba(0,0,0,0.2);
+  }
+
+  /* 2. CUANDO SE ABRE (Tu JS agrega la clase .open) */
+  .sidebar.open {
+    transform: translateX(0); /* Vuelve a entrar a la pantalla */
+  }
+
+  /* 3. EL CONTENIDO PRINCIPAL: Ocupa todo el ancho */
+  .main {
+    margin-left: 0 !important; /* Quitamos el margen izquierdo */
+    width: 100%;
+  }
+
+  /* 4. EL BOTÓN DE MENÚ (HAMBURGUESA) */
+  .toggle {
+    display: block; /* Aseguramos que sea visible */
+    font-size: 1.6rem;
+    color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  /* 5. OVERLAY (FONDO OSCURO) */
+  /* Aseguramos que el overlay funcione cuando el menú abre */
+  body.menu-open #overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+    backdrop-filter: blur(2px);
+  }
+}

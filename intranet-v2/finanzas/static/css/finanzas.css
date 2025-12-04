@@ -1,0 +1,420 @@
+/* =========================================
+   1. VARIABLES & IDENTIDAD COLEGIO
+   ========================================= */
+:root {
+  /* --- COLORES INSTITUCIONALES --- */
+  --primary: #0F294C;        /* Azul Oscuro Colegio */
+  --primary-dark: #0a1d36;   /* Azul más profundo para fondos */
+  --secondary: #CDA758;      /* Amarillo Dorado Colegio */
+  --secondary-hover: #bfa045;
+  
+  /* Fondos */
+  --bg-body: #F2F4F8;        
+  --bg-card: #FFFFFF;
+  
+  /* Textos */
+  --text-main: #1a1a1a;
+  --text-muted: #64748b;
+  --text-on-primary: #FFFFFF; 
+  
+  /* Estados Funcionales */
+  --success: #10b981;        
+  --danger: #ef4444;       
+  --warning: #f59e0b;      
+
+  /* Efectos "Premium" */
+  --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+  --shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --radius: 16px;            /* Bordes redondeados modernos */
+  
+  --sidebar-w: 280px;
+  --header-h: 80px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* Scrollbar personalizado (Azul) */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+.layout { display: flex; min-height: 100vh; }
+
+/* ======================
+   SIDEBAR FINANZAS 
+======================== */
+.sidebar {
+  width: var(--sidebar-w); 
+  background-color: var(--primary); /* Azul Sólido */
+  color: var(--text-on-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  box-shadow: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+/* --- PERFIL --- */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 40px 20px 20px; 
+  margin-bottom: 10px;
+  border-bottom: none; /* Sin línea divisoria */
+  background: transparent;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: var(--secondary); /* Amarillo Dorado */
+  color: var(--primary); /* Texto Azul */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 12px; /* Cuadrado redondeado */
+  font-size: 19px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.profile-info div:first-child {
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+}
+
+.role {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-size: 11px;
+  color: #cbd5e1;
+  font-weight: 600;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  gap: 8px;
+  overflow-y: auto;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: rgba(255, 255, 255, 0.7); /* Gris claro */
+  text-decoration: none;
+  font-weight: 500;
+  padding: 14px 18px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+}
+
+/* Hover enlaces normales */
+.menu a:hover:not(.active):not(.logout) {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Enlace Activo (Dorado Sólido) */
+.menu a.active {
+  background-color: var(--secondary);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* --- CERRAR SESIÓN (Botón Oscuro con Borde Rojo) --- */
+.menu a.logout {
+  margin-top: 25px; /* Separado del menú, pero no al fondo */
+  
+  background-color: rgba(30, 41, 59, 0.5); /* Fondo oscuro */
+  border: 1px solid #ff4d4d; /* Borde Rojo */
+  color: #ff4d4d !important; /* Texto Rojo */
+  
+  border-radius: 12px;
+  padding: 12px 0;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* --- CERRAR SESIÓN--- */
+.menu a.logout {
+  margin-top: 25px; /* Separado del menú, pero no al fondo */
+  
+  background-color: rgba(30, 41, 59, 0.5); /* Fondo oscuro */
+  border: 1px solid #ff4d4d; /* Borde Rojo */
+  color: #ff4d4d !important; /* Texto Rojo */
+  
+  border-radius: 12px;
+  padding: 12px 0;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.menu a.logout:hover {
+  background-color: #ff4d4d; /* Rojo sólido al hover */
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(255, 77, 77, 0.3);
+  transform: translateY(-2px);
+}
+
+.footer {
+  text-align: center; padding: 15px; font-size: 11px; 
+  color: rgba(255,255,255,0.3); border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================================
+   3. MAIN AREA & TOPBAR
+   ========================================= */
+.main {
+  flex: 1;
+  margin-left: var(--sidebar-w);
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+}
+
+.topbar {
+  height: var(--header-h);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.topbar-title { 
+    font-size: 24px; 
+    font-weight: 700; 
+    color: var(--primary); 
+    letter-spacing: -0.5px;
+}
+.toggle { display: none; color: var(--primary); font-size: 24px; background: none; border: none; cursor: pointer; }
+
+.content { padding: 40px; max-width: 1600px; margin: 0 auto; width: 100%; }
+
+/* =========================================
+   4. TARJETAS 
+   ========================================= */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 30px;
+  border: 1px solid rgba(0,0,0,0.03);
+  transition: transform 0.2s ease;
+}
+
+h2 { margin: 0 0 8px; color: var(--primary); font-size: 22px; font-weight: 700; }
+p { margin: 0 0 24px; color: var(--text-muted); font-size: 14px; }
+
+/* Stats Cards */
+.stat-cards-container { display: flex; gap: 24px; flex-wrap: wrap; }
+
+.stat-card {
+  flex: 1;
+  min-width: 260px;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-card);
+  border-bottom: 4px solid transparent; /* Preparar borde inferior */
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-bottom-color: var(--secondary); /* Borde dorado al hover */
+}
+
+/* Iconos dentro de las cards */
+.stat-card i {
+  width: 54px; 
+  height: 54px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+/* Colores específicos para iconos */
+.stat-card .fa-hourglass-start { background: #fffbf0; color: #f59e0b; } /* Amarillo */
+.stat-card .fa-circle-check { background: #ecfdf5; color: #10b981; }    /* Verde */
+.stat-card .fa-ban, .stat-card .fa-exclamation-triangle { background: #fef2f2; color: #ef4444; } /* Rojo */
+.stat-card .fa-receipt { background: #f0f9ff; color: var(--primary); }   /* Azul */
+.stat-card .fa-sack-dollar { background: #fffbeb; color: var(--secondary); } /* Dorado */
+
+.stat-card .card-num { font-size: 32px; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 4px; }
+.stat-card div:last-child { color: var(--text-muted); font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* =========================================
+   5. TABLAS, LISTAS Y ELEMENTOS UI
+   ========================================= */
+/* Filtros */
+.filters-row { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+.search-box { position: relative; width: 320px; }
+
+.search-input, .filter-select {
+  width: 100%; padding: 12px 20px;
+  border-radius: 50px; /* Pill shape */
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  font-family: inherit; font-size: 14px;
+  transition: 0.2s; outline: none;
+}
+
+.search-input:focus, .filter-select:focus {
+  border-color: var(--secondary); /* Foco Dorado */
+  box-shadow: 0 0 0 3px rgba(205, 167, 88, 0.15);
+}
+
+/* Headers de Tabla */
+.list-table-header {
+  display: grid;
+  padding: 16px 24px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  color: var(--primary);
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* Filas */
+.payment-row {
+  display: grid;
+  padding: 18px 24px;
+  align-items: center;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  background: #fff;
+  transition: background 0.15s;
+}
+.payment-row:hover { background: #fffbf0; /* Fondo dorado muy muy suave al hover */ }
+
+/* Grids */
+.list-table-header, 
+#list-Pendientes .payment-row, 
+#list-Aprobados .payment-row, 
+#list-Rechazados .payment-row {
+    grid-template-columns: 2.2fr 1fr 1.2fr 1.5fr 1fr 1.2fr 0.8fr 1fr 0.8fr;
+    gap: 10px;
+}
+.cuotas-card .list-table-header, .cuota-item {
+    grid-template-columns: 2fr 1fr 2fr 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+/* Badges */
+.badge { padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 11px; text-transform: uppercase; text-align: center;}
+.badge-pendiente { background: #FFF7ED; color: #c2410c; border: 1px solid #ffedd5; }
+.badge-aprobado { background: #ECFDF5; color: #047857; border: 1px solid #d1fae5; }
+.badge-rechazado { background: #FEF2F2; color: #b91c1c; border: 1px solid #fee2e2; }
+
+/* Botones Acción */
+.acciones { display: flex; gap: 8px; }
+.btn-acc {
+  border: none; width: 34px; height: 34px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s;
+}
+.btn-acc.approve { background: #ecfdf5; color: #10b981; }
+.btn-acc.approve:hover { background: #10b981; color: #fff; transform: scale(1.05); }
+
+.btn-acc.reject { background: #fef2f2; color: #ef4444; }
+.btn-acc.reject:hover { background: #ef4444; color: #fff; transform: scale(1.05); }
+
+.btn-acc.revert { background: #f1f5f9; color: var(--primary); }
+.btn-acc.revert:hover { background: var(--primary); color: #fff; }
+
+/* Acordeón */
+.accordion-card { padding: 0; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: none; }
+.accordion-header {
+  padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff;
+}
+.accordion-header:hover { background: #f8fafc; }
+.accordion-header h3 { margin: 0; font-size: 16px; color: var(--primary); display: flex; align-items: center; gap: 10px;}
+.count-soft { background: var(--primary); color: #fff; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;}
+.accordion-body { max-height: 0; overflow: hidden; transition: 0.3s ease; background: #fff; }
+.accordion-body.open { max-height: 800px; padding: 24px; border-top: 1px solid #e2e8f0; }
+
+/* Lista Scroll y Sugerencias */
+.list-scroll { max-height: 400px; overflow-y: auto; }
+.suggestions {
+  position: absolute; top: 48px; left: 0; width: 100%; background: #fff;
+  border-radius: 12px; box-shadow: var(--shadow-hover); z-index: 10; border: 1px solid #e2e8f0;
+}
+.suggest-item { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; cursor: pointer; font-size: 13px; }
+.suggest-item:hover { background: #f8fafc; color: var(--primary); font-weight: 600; }
+
+/* Modal */
+#modal-bg { backdrop-filter: blur(5px); background: rgba(15, 41, 76, 0.6) !important; } /* Fondo azulado oscuro */
+#modal-title { color: var(--primary); }
+#modal-ok { background: var(--primary) !important; transition: 0.2s; }
+#modal-ok:hover { background: var(--secondary) !important; color: var(--primary) !important; }
+
+/* Responsive Mobile */
+@media (max-width: 992px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .toggle { display: block; }
+  
+  .list-table-header { display: none; }
+  .payment-row, .cuota-item {
+    display: flex; flex-direction: column; gap: 10px; padding: 20px;
+    border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 12px;
+  }
+  .payment-row div { display: flex; justify-content: space-between; width: 100%; }
+}

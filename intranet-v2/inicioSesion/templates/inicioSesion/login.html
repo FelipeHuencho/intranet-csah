@@ -1,0 +1,191 @@
+{% load static %} <!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal San Agustín de Hipona</title>
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="{% static 'inicioSesion/css/loginStyle.css' %}">
+  <link rel="icon" type="image/png" sizes="64x64" href="{% static 'inicioSesion/img/logo_V2-removebg-preview.png' %}">
+</head>
+
+<body>
+
+  <div class="main-wrapper">
+
+    <div class="left-panel">
+      <div class="left-panel-content">
+        <img src="{% static 'inicioSesion/img/logo.png' %}" alt="Logo Colegio San Agustín de Hipona" class="school-logo-large">
+        <h2 class="welcome-heading">Bienvenido al Portal Escolar</h2>
+        <p class="welcome-text">Accede a toda la información y recursos de la comunidad del Colegio San Agustín de Hipona.</p>
+      </div>
+      
+      <p class="copyright-text">© 2025 Colegio San Agustín de Hipona. Todos los derechos reservados.</p>
+    </div>
+
+    <div class="right-panel">
+      <div class="form-container">
+        
+        <img src="{% static 'inicioSesion/img/logo.png' %}" alt="Logo Colegio San Agustín de Hipona" class="school-logo-small">
+
+        <div class="form-header">
+          <h1>Acceso Intranet</h1>
+          <p class="sub-header-text">¡Hola de nuevo! Ingresa con tu cuenta.</p>
+        </div>
+
+        {% if messages %}
+          <div class="message-container">
+            {% for m in messages %}
+              <div class="alert {{ m.tags }}">{{ m }}</div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <form class="form-box" method="post" novalidate>
+          
+          {% csrf_token %}
+
+          <div class="input-group">
+            {{ form.rut }} <label for="id_rut" class="floating-label">RUT</label>
+          </div>
+
+          <div class="input-group">
+            {{ form.password }}
+            <label for="id_password" class="floating-label">Contraseña</label>
+            
+            <div class="eye-icon" id="toggle-password">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                   stroke-linejoin="round">
+                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="input-group checkbox-group">
+            <div class="form-col remember-me">
+              {{ form.remember }}
+              <label for="id_remember">Recordarme</label>
+            </div>
+            
+            <div class="form-col">
+              <a href="#" id="forgot-link" class="form-link">Recupera tu contraseña</a>
+            </div>
+          </div>
+
+          <button
+              type="submit"
+              class="form-btn--submit"
+              id="btn-login"
+              {% if locked %}
+                disabled
+                data-remaining="{{ remaining_seconds }}"
+              {% endif %}
+            >
+              Iniciar sesión
+          </button>
+
+          <div id="lock-timer" style="display:none; color:#c00; margin-top:12px; text-align:center; font-weight:600;">
+            Espera <span id="timer-seconds"></span> segundos para volver a intentar.
+          </div>
+
+          <div class="create-account-text" style="margin-top: 20px; font-size: 0.9rem; color: #666;">
+            ¿No tienes cuenta? 
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=soporte@hipona.cl&su=SOLICITUD%20DE%20ACCESO%20A%20INTRANET" 
+               class="form-link" target="_blank">Solicita acceso aquí.</a>
+          </div>
+        </form>
+
+        <div class="form-divider"><p>MÁS SOBRE NOSOTROS</p></div>
+
+        <div class="form-bottom">
+          <div class="form-socials">
+            <a href="https://www.facebook.com/p/Colegio-San-Agust%C3%ADn-De-Hipona-100083565270696/?locale=es_LA" target="_blank" class="form-btn--social">
+              <img src="{% static 'inicioSesion/img/facebook.svg' %}" class="btn-icon" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/colegio.agustin.de.hipona/?hl=es" target="_blank" class="form-btn--social">
+              <img src="{% static 'inicioSesion/img/instagram.svg' %}" class="btn-icon" alt="Instagram">
+            </a>
+            <a href="https://hipona.cl/" target="_blank" class="form-btn--social">
+              <img src="{% static 'inicioSesion/img/google.svg' %}" class="btn-icon" alt="Web">
+            </a>
+          </div>
+        </div>
+
+      </div> 
+    </div> 
+  </div> 
+
+  <div id="forgot-modal" class="modal-overlay">
+    <div class="modal-box">
+
+      <div class="step step-rut">
+        <h2 class="modal-title">Recuperar contraseña</h2>
+        <p class="modal-desc">Selecciona tu tipo de cuenta:</p>
+
+        <div class="role-selector">
+            <input type="radio" id="role_student" name="recovery_role" value="student" checked>
+            <label for="role_student">Soy Alumno</label>
+
+            <input type="radio" id="role_staff" name="recovery_role" value="staff">
+            <label for="role_staff">Soy Docente/Admin</label>
+        </div>
+
+        <form id="form-step-rut" class="modal-form">
+          
+          <div id="fields-student">
+             <label for="rut-alumno">RUT Alumno</label>
+             <input type="text" id="rut-alumno" class="input-field" placeholder="12.345.678-9" maxlength="12" autocomplete="off">
+
+             <label for="rut-apoderado">RUT Apoderado</label>
+             <input type="text" id="rut-apoderado" class="input-field" placeholder="12.345.678-9" maxlength="12" autocomplete="off"> 
+
+             <label for="correo-apoderado">Correo Apoderado</label>
+             <input type="email" id="correo-apoderado" class="input-field" placeholder="apoderado@colegio.cl" autocomplete="off">
+          </div>
+
+          <div id="fields-staff" style="display: none;">
+             <label for="rut-staff">Tu RUT</label>
+             <input type="text" id="rut-staff" class="input-field" placeholder="12.345.678-9" maxlength="12" autocomplete="off">
+
+             <label for="correo-staff">Tu Correo Institucional</label>
+             <input type="email" id="correo-staff" class="input-field" placeholder="nombre@colegio.cl" autocomplete="off">
+          </div>
+
+          <div class="button-group">
+             <button type="submit" class="btn-primary">Continuar</button>
+             <button type="button" class="btn-cancel">Cancelar</button>
+          </div>
+        </form>
+
+        <p class="estado" style="color: #d94343; margin-top:10px; min-height: 20px;"></p>
+      </div>
+
+      <div class="step step-email" style="display:none;">
+        <h2 style="color: #10b981;">¡Enlace enviado!</h2>
+        <p>Hemos enviado las instrucciones a tu correo.</p>
+        <p style="font-size: 0.85rem; color: #888;">Revisa tu bandeja de entrada y spam.</p>
+        <div class="button-group" style="margin-top: 20px;">
+           <button type="button" class="btn-cancel">Cerrar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Pasamos variables de Python (Django) a variables globales de JavaScript
+    // Esto permite que el archivo login.js sepa si la cuenta está bloqueada y por cuánto tiempo
+    window.loginLocked = "{{ locked }}";
+    window.lockSeconds = "{{ remaining_seconds }}";
+  </script>
+  
+  <script src="{% static 'inicioSesion/js/login.js' %}"></script>
+
+</body>
+</html>

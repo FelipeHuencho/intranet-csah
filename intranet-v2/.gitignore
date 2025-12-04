@@ -1,0 +1,46 @@
+# ==========================
+# PYTHON / DJANGO
+# ==========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+
+# ==========================
+# ENVIRONMENTS / CONFIGS
+# ==========================
+.env
+*.env
+*.secret
+.env.bak
+.env.local
+
+# ==========================
+# VIRTUAL ENVIRONMENTS
+# ==========================
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+Scripts/
+Lib/
+Include/
+
+# ==========================
+# DJANGO STATIC
+# ==========================
+staticfiles/
+media/
+*.log
+
+# ==========================
+# IDE / SYSTEM FILES
+# ==========================
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

@@ -1,0 +1,938 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --color-primary: #0F294C;
+  --color-primary-rgb: 15, 41, 76;
+  --color-secondary: #CDA758;
+  --color-secondary-bright: #E9D29B;
+  --color-text-dark: #333;
+  --color-text-light: #ffffff;
+  --color-text-muted: #666;
+  --color-placeholder: #888;
+  --color-text-divider: #aaa;
+  --color-background-input: #f8fafc;
+  --color-border: #e2e8f0;
+  
+  --font-main: 'Poppins', sans-serif;
+  --radius-md: 12px;
+  --radius-lg: 24px;
+  
+  --shadow-main: 0 20px 60px rgba(0, 0, 0, 0.3);
+  --shadow-btn: 0 4px 15px rgba(15, 41, 76, 0.25);
+  --shadow-btn-hover: 0 8px 25px rgba(205, 167, 88, 0.4);
+  
+  --transition-main: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+/* =========================================
+   FONDO Y BODY (SIN SCROLL EN PC)
+   ========================================= */
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Sin scroll principal */
+}
+
+body {
+  background-color: #0F294C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Imagen de fondo */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../img/DJI_0535.jpg'); 
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.85) blur(4px); /* Difuminado suave */
+  z-index: -1;
+  transform: scale(1.02);
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+   ========================================= */
+.main-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 1100px;
+  
+  /* Altura controlada */
+  height: 85vh; 
+  max-height: 800px;
+  min-height: 600px;
+  
+  background-color: rgba(255, 255, 255, 0.96); 
+  box-shadow: var(--shadow-main);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  backdrop-filter: blur(10px); 
+  animation: zoomIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* =========================================
+   PANEL IZQUIERDO (IMAGEN & LOGO GRANDE)
+   ========================================= */
+
+.left-panel {
+  flex: 1.2;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+  /* --- AJUSTE VERTICAL --- */
+  justify-content: flex-start; 
+  padding-top: 18%;    
+  align-items: center;     
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  
+  color: var(--color-text-light); 
+  text-align: center;
+}
+.left-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0; 
+  z-index: -1;
+  background-image: url('../img/DJI_0535.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; 
+  box-shadow: inset 0 0 0 1000px rgba(15, 41, 76, 0.85); 
+  transition: transform 0.5s;
+}
+
+.left-panel-content {
+  z-index: 2;
+  animation: slideUp 0.8s ease-out 0.2s backwards;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+/* --- LOGO --- */
+.school-logo-large {
+  width: 240px; 
+  height: auto;
+  margin-bottom: 30px;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4)); 
+  transition: transform 0.3s;
+}
+.school-logo-large:hover { transform: scale(1.05); }
+
+.welcome-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  line-height: 1.3;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.welcome-text {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.copyright-text {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%; 
+  text-align: center; 
+  font-size: 0.75rem;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  padding: 0 20px;
+}
+
+/* =========================================
+   PANEL DERECHO 
+   ========================================= */
+.right-panel {
+  flex: 1;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;         
+  padding-top: 15%;            
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  position: relative;
+  overflow-y: auto; 
+  scrollbar-width: none;
+}
+
+/* Ocultar barra de scroll */
+.right-panel::-webkit-scrollbar {
+  display: none;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 380px; 
+  text-align: center;
+  animation: fadeIn 0.8s ease-out 0.4s backwards;
+  margin: 0 auto;
+}
+
+/* Logo Pequeño (Móvil) */
+.school-logo-small {
+  display: none;
+  width: 100px;
+  margin: 0 auto 20px;
+}
+
+.form-header {
+  margin-bottom: 25px;
+}
+
+.form-header h1 {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+}
+
+.sub-header-text {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* --- INPUTS --- */
+.form-box { display: flex; flex-direction: column; gap: 20px; }
+.input-group { position: relative; }
+
+.input-group input {
+  width: 100%;
+  height: 54px; 
+  padding: 0 15px 0 12px;
+  border: 2px solid transparent;
+  background-color: var(--color-background-input);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--color-text-dark);
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.input-group input:focus {
+  background-color: #fff;
+  box-shadow: 0 0 0 2px var(--color-secondary);
+  transform: translateY(-2px);
+}
+
+.floating-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-placeholder);
+  pointer-events: none;
+  transition: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-size: 0.95rem;
+  padding: 0 4px;
+  background-color: transparent;
+}
+
+.input-group input:focus ~ .floating-label,
+.input-group input:not(:placeholder-shown) ~ .floating-label {
+  top: -9px; 
+  font-size: 0.75rem;
+  color: var(--color-primary);
+  background-color: #fff;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.eye-icon {
+  position: absolute; right: 15px; top: 50%; transform: translateY(-50%);
+  cursor: pointer; color: #aaa; transition: 0.2s;
+}
+.eye-icon:hover { color: var(--color-primary); }
+
+/* --- CHECKBOX Y LINKS --- */
+.input-group.checkbox-group {
+  display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-top: -5px;
+}
+.remember-me { display: flex; align-items: center; gap: 8px; color: #555; cursor: pointer; }
+.input-group input[type="checkbox"] {
+  width: 18px; height: 18px; accent-color: var(--color-primary); cursor: pointer;
+}
+.form-link {
+  color: var(--color-primary); font-weight: 600; text-decoration: none; font-size: 0.85rem;
+  position: relative;
+}
+.form-link::after {
+  content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0;
+  background-color: var(--color-secondary); transition: width 0.3s;
+}
+.form-link:hover::after { width: 100%; }
+
+/* --- BOTÓN PRINCIPAL --- */
+.form-btn--submit {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1a427a 100%);
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-btn);
+  margin-top: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.form-btn--submit:hover {
+  background: linear-gradient(135deg, #1a427a 0%, var(--color-primary) 100%);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-btn-hover);
+}
+.form-btn--submit:active { transform: translateY(0); }
+
+/* --- FOOTER --- */
+.form-divider {
+  margin: 35px 0 25px; 
+  position: relative; 
+  font-size: 0.8rem; 
+  color: #aaa; 
+  text-transform: uppercase; 
+  letter-spacing: 1px;
+}
+.form-divider::before {
+  content: ''; 
+  position: absolute; 
+  left: 0; right: 0; 
+  top: 50%; height: 1px; 
+  background-color: #eee; 
+  z-index: 1;
+}
+.form-divider p {
+  background-color: #fff; 
+  padding: 0 15px; 
+  display: inline-block; 
+  position: relative; 
+  z-index: 2;
+}
+
+.form-socials { display: flex; 
+  justify-content: center; 
+  gap: 15px; 
+  margin-bottom: 20px; }
+
+.form-btn--social {
+  width: 45px; 
+  height: 45px; 
+  border-radius: 50%; 
+  border: 1px solid #eee;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  transition: 0.3s; 
+  background: #fff;
+}
+.form-btn--social:hover {
+  border-color: var(--color-primary); 
+  transform: translateY(-3px); 
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-icon { width: 20px; 
+  height: 20px; 
+}
+
+/* Mensajes de Alerta */
+.message-container {
+  position: fixed; 
+  top: 20px; left: 50%; 
+  transform: translateX(-50%); 
+  z-index: 9999; width: 90%; 
+  max-width: 400px;
+}
+.alert {
+  padding: 14px 20px; 
+  border-radius: 8px; 
+  font-weight: 500; 
+  font-size: 0.9rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+  margin-bottom: 10px; 
+  display: flex; 
+  align-items: center; 
+  gap: 10px;
+  animation: slideDown 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.alert.danger { background: #fff; 
+  border-left: 5px solid #ef4444; 
+  color: #b91c1c; 
+}
+
+.alert.success { background: #fff; 
+  border-left: 5px solid #22c55e; 
+  color: #15803d;
+ }
+
+/* ============================================================
+    RESPONSIVIDAD TOTAL 
+   ============================================================ */
+@media (max-width: 850px) {
+  
+  html, body {
+    overflow-y: auto; 
+    height: auto;     
+    background: #ffffff; 
+  }
+  
+  body::before { display: none; } 
+
+  .main-wrapper {
+    flex-direction: column;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    min-height: 100vh;
+    
+    /* SIN ESTILO DE TARJETA */
+    border-radius: 0; 
+    box-shadow: none; 
+    border: none;
+    
+    margin: 0;
+    background-color: #fff;
+    backdrop-filter: none;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .left-panel { display: none; } 
+
+  .right-panel {
+    padding: 40px 25px;
+    width: 100%;
+    min-height: 100vh;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 100%;
+    animation: none;
+  }
+
+  /* --- LOGO EN CELULAR--- */
+  .school-logo-small {
+    display: block;
+    width: 150px; /* Aumentado de 100px a 150px para celular */
+    margin: 0 auto 30px;
+  }
+
+  .form-header h1 { font-size: 1.8rem; }
+  .sub-header-text { font-size: 0.95rem; margin-bottom: 40px; }
+
+  /* Inputs Táctiles Mejorados */
+  .input-group input {
+    height: 60px;
+    font-size: 16px; 
+    border-radius: 14px;
+    background-color: #f7f9fc;
+    border: 1px solid #eef2f6;
+  }
+  
+  .input-group input:focus {
+    background-color: #fff;
+    border-color: var(--color-primary);
+  }
+
+  /* Botón Grande */
+  .form-btn--submit {
+    padding: 18px;
+    font-size: 1.1rem;
+    border-radius: 14px;
+    margin-top: 30px;
+    box-shadow: 0 10px 25px rgba(15, 41, 76, 0.15);
+  }
+
+  /* Modal Móvil */
+  .modal-box {
+    width: 95%;
+    padding: 25px;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 20px;
+    margin: 0;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
+  }
+  
+  .form-link { padding: 12px 0; display: inline-block; }
+}
+
+/* ============================================================
+   MODAL DE RECUPERACIÓN 
+   ============================================================ */
+
+/* 1. Fondo oscuro (Fade In) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 41, 76, 0.6); 
+  backdrop-filter: blur(4px);        
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  
+  /* Estado inicial para la transición del fondo */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Cuando JS agrega .show, el fondo aparece suavemente */
+.modal-overlay.show {
+  display: flex;
+  opacity: 1;
+}
+
+/* 2. Definición de la Animación "Pop Up" (Escritorio) */
+@keyframes modalPopUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.02) translateY(-10px); /* Rebote */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* 3. La Tarjeta Principal */
+.modal-box {
+  background: #ffffff;
+  width: 90%;
+  max-width: 400px;
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5); 
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 4px solid var(--color-secondary);
+  
+  /* ESTADO INICIAL: Invisible y desplazado */
+  opacity: 0; 
+  transform: scale(0.8) translateY(30px);
+}
+
+/* 4. EJECUTAR ANIMACIÓN AL ABRIR */
+.modal-overlay.show .modal-box {
+  /* 'forwards' asegura que se quede visible al terminar */
+  animation: modalPopUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- RESTO DE ESTILOS (IGUAL QUE ANTES) --- */
+
+.modal-box h2 {
+  color: var(--color-primary);
+  margin-bottom: 8px;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.modal-box p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* Selector Cápsula */
+.role-selector {
+  display: flex;
+  background-color: #f1f5f9;
+  border-radius: 50px; 
+  padding: 4px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.role-selector input[type="radio"] { display: none; }
+
+.role-selector label {
+  flex: 1;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64748b;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.role-selector input[type="radio"]:checked + label {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(15, 41, 76, 0.25);
+}
+
+/* Inputs */
+.modal-box label:not(.role-selector label) {
+  display: block;
+  text-align: left;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.modal-box .input-field { 
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  margin-bottom: 15px;
+  font-size: 0.95rem;
+  color: #333;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.modal-box .input-field:focus {
+  background-color: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(15, 41, 76, 0.1);
+}
+
+/* Botones */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #1a427a 100%);
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(15, 41, 76, 0.2);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(15, 41, 76, 0.3);
+}
+
+.btn-cancel {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.btn-cancel:hover { color: var(--color-danger-text); }
+
+.estado {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-height: 20px;
+  color: var(--color-danger-text);
+}
+
+/* --- 5. AJUSTES Y ANIMACIÓN PARA CELULAR --- */
+@media (max-width: 480px) {
+  
+  /* Animación Deslizar desde abajo */
+  @keyframes slideUpMobile {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-box {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 24px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    
+    /* Posición inicial: Escondido abajo */
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+    padding: 30px 25px;
+    
+    /* Estado inicial móvil */
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .modal-overlay.show .modal-box {
+    /* Ejecuta la animación de deslizar */
+    animation: slideUpMobile 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    
+    /* Quitamos las propiedades de la animación de escritorio */
+    transform: none; 
+  }
+}
+/* ============================================================
+   ANIMACIONES DE SALIDA (CERRAR MODAL)
+   ============================================================ */
+
+/* 1. Animación para el Fondo Oscuro (Fade Out) */
+.modal-overlay.closing {
+  animation: fadeOutOverlay 0.3s forwards;
+  /* Mantenemos display flex mientras se anima */
+  display: flex !important; 
+}
+
+@keyframes fadeOutOverlay {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* 2. Animación Salida ESCRITORIO (Pop Down) */
+.modal-overlay.closing .modal-box {
+  animation: modalPopDown 0.3s forwards;
+}
+
+@keyframes modalPopDown {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+}
+
+/* 3. Animación Salida CELULAR (Deslizar hacia abajo) */
+@media (max-width: 480px) {
+  .modal-overlay.closing .modal-box {
+    animation: slideDownMobile 0.3s forwards;
+  }
+
+  @keyframes slideDownMobile {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+}
+
+/* Animaciones */
+@keyframes zoomIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes slideDown { from { transform: translateY(-40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+/* ============================================================
+   ANIMACIONES DE SALIDA 
+   ============================================================ */
+
+/* 1. El Fondo Oscuro se desvanece */
+.modal-overlay.closing {
+  animation: fadeOutOverlay 0.3s forwards;
+  /* Es vital mantener display:flex para que no desaparezca antes de animar */
+  display: flex !important; 
+}
+
+@keyframes fadeOutOverlay {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* 2. La Tarjeta se va hacia abajo (Escritorio) */
+.modal-overlay.closing .modal-box {
+  animation: modalPopDown 0.3s forwards;
+}
+
+@keyframes modalPopDown {
+  from { 
+    opacity: 1; 
+    transform: scale(1) translateY(0); 
+  }
+  to { 
+    opacity: 0; 
+    transform: scale(0.9) translateY(20px); 
+  }
+}
+
+/* 3. La Tarjeta se desliza hacia abajo (Celular) */
+@media (max-width: 480px) {
+  .modal-overlay.closing .modal-box {
+    animation: slideDownMobile 0.3s forwards;
+  }
+
+  @keyframes slideDownMobile {
+    from { transform: translateY(0); }
+    to { transform: translateY(100%); }
+  }
+}
+/* ============================================================
+   ALERTAS RÁPIDAS (3 SEGUNDOS)
+   ============================================================ */
+
+.message-container {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: auto;
+  min-width: 320px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none; 
+}
+
+.alert {
+  background-color: #fff;
+  border-left: 6px solid #ef4444; /* Rojo Error */
+  color: #b91c1c;
+  padding: 16px 25px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: auto;
+
+  /* --- CONFIGURACIÓN DE TIEMPO: 3 SEGUNDOS --- */
+  opacity: 0; 
+  animation: autoDismiss 3s ease forwards;
+}
+
+/* --- LÍNEA DE TIEMPO DE 3 SEGUNDOS --- */
+@keyframes autoDismiss {
+  /* 1. ENTRADA (0s a 0.5s aprox) */
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 2. LECTURA (0.5s a 2.5s aprox) - Se queda quieta */
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* 3. SALIDA (2.5s a 3s) - Se va */
+  100% {
+    opacity: 0;
+    transform: translateY(-50px);
+    visibility: hidden;
+  }
+}
+/* ============================================================
+   ESTILO PARA ALERTA DE ÉXITO (LOGOUT / REGISTRO)
+   ============================================================ */
+
+/* Cuando el mensaje es success (verde) */
+.alert.success {
+  background-color: #ffffff;
+  border-left: 6px solid #10b981; /* Verde Esmeralda */
+  color: #065f46;                 /* Texto verde oscuro */
+  border: 1px solid #d1fae5;      /* Borde sutil */
+}
+
+/* Icono específico para éxito (Check) */
+.alert.success::before {
+  content: '✔'; /* Icono simple con CSS */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: #d1fae5;
+  color: #10b981;
+  border-radius: 50%;
+  font-size: 14px;
+  margin-right: 8px;
+  font-weight: 800;
+}
+
+/* Animación de rebote suave para el éxito */
+.alert.success {
+  animation: slideInSuccess 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+@keyframes slideInSuccess {
+  0% {
+    opacity: 0;
+    transform: translateY(-80px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
